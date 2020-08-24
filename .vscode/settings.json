@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+    
+    },
+    "python.pythonPath": ".venv/bin/python",
+    "editor.fontSize": 12,
+    "terminal.integrated.fontSize": 12,
+    "markdown.preview.fontSize": 12,
+    "debug.console.fontSize": 12
+}

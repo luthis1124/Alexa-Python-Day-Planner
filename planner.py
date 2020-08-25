@@ -211,15 +211,14 @@ def play_video(add_name, duration, task_start):
 def declare_extra_tasks():
     #some tasks to publish
     add_extra_internal("compile some stoic quotes.", 15)
-    # add_extra_internal("clean and then vacuum your room", 20)
-    
+    add_extra_internal("add inspirational quote for the day list.", 10)
+    add_extra_internal("email the new job people about starting a week later.", 10)
+        
     add_extra_internal("remind rebecca to post package.", 1)
     add_extra_internal("do the ali express order.", 20)
     
     add_extra_internal("get through your emails.", 20)
-    
-    add_extra_internal("transcribe your notes on the green slips.", 20)
-    add_extra_internal("upload your code to github.", 20)
+    add_extra_internal("incorporate the breath holding practice.", 20)   
     
     add_extra_internal("fix the green drill under the bed.", 60)
     add_extra_internal("fix the pyrography pen under the bed.", 60)
@@ -339,7 +338,6 @@ def default_daily_tasks():
     # ------------------------------------- afternoon ----------------------------------------
     task_start[0] = afternoon[0]
     task_start[1] = afternoon[1]
-    add_daily_internal("now it's time to work on the planner. you need to change the tasks as required for tomorrow.", 1, task_start)
 
     # -----------------------------------------------------------------------------
 

@@ -13,7 +13,7 @@ def any_action():
     elif(trigger == 4): # start planner with late start
         subprocess.Popen(["/home/st/Projects/Planner/.venv/bin/python", "/home/st/Projects/Planner/planner.py", "late"])
     elif(trigger == 5): # reply with the next task on the list
-        subprocess.Popen(["/home/st/Projects/Planner/.venv/bin/python", "/home/st/Projects/Planner/planner.py", "nextTask"])
+        subprocess.Popen(["/home/st/Projects/Planner/.venv/bin/python", "/home/st/Projects/Planner/planner.py", "startNow"])
 
 
 any_action()

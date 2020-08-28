@@ -206,6 +206,10 @@ class planner:
             daystart = self.early_daystart
         elif _time == 1:
             daystart = self.late_daystart
+        elif _time == 2:
+            now = datetime.now()
+            daystart = [now.hour, now.minute + 1]
+            self.client.publish ("python", "Don't worry, I'll help you get up.")
 
         # print("yes, we set the initial conditions")
 
@@ -296,22 +300,73 @@ class planner:
 
     def declare_extra_tasks(self):
         #some tasks to publish
+                
+        announce = self.action.announce
         
-        self.add_extra_internal("add spanish daily practice", 20)
+        self.add_extra_internal(announce, ["add spanish daily practice", 20])
             
-        self.add_extra_internal("remind rebecca to post package.", 1)
-        self.add_extra_internal("do the ali express order.", 20)
         
-        self.add_extra_internal("get through your emails.", 20)
-        self.add_extra_internal("incorporate the breath holding practice.", 20)   
-        
-        self.add_extra_internal("fix the green drill under the bed.", 60)
-        self.add_extra_internal("fix the pyrography pen under the bed.", 60)
-        self.add_extra_internal("try to fix rebeccas blue nokia with the replacement screen.", 20)       
+        self.add_extra_internal(announce, ["do the ali express order.", 20])
 
-    def add_extra_internal(self, _add_name, _duration):
-    
-        self.extraqueue[_add_name] = _duration
+        self.add_extra_internal(announce, ["frequent reminders, such as vape and sit up straight", 20])
+        self.add_extra_internal(announce, ["washing should be an extra task", 20])
+        self.add_extra_internal(announce, ["loop tasks, ie start thing, end thing, ie washing, baking", 20])
+        self.add_extra_internal(announce, ["recurring tasks on longer frequency ie vacuum room, shave, washing", 20])
+        self.add_extra_internal(announce, ["add task for reading journal", 20])
+        self.add_extra_internal(announce, ["check if tasks get completed", 20])
+        self.add_extra_internal(announce, ["congratulations message for each task", 20])
+        self.add_extra_internal(announce, ["enable better easier flexibility for changing day start times etc", 20])
+        self.add_extra_internal(announce, ["late night option", 20])
+
+        self.add_extra_internal(announce, ["600 hours in one year for spanish", 20])
+        self.add_extra_internal(announce, ["add fruit to diet", 20])
+        self.add_extra_internal(announce, ["add novelty to the tasks", 20])
+        self.add_extra_internal(announce, ["todays playlist ( based on weather? )", 20])
+        self.add_extra_internal(announce, ["extra tasks currently fill up with read until next task. needs a rewrite", 20])
+
+        self.add_extra_internal(announce, ["alexa, pause my planner", 20])
+        self.add_extra_internal(announce, ["lets do some yoga/workout", 20])
+        self.add_extra_internal(announce, ["what's my current task / next task", 20])
+        self.add_extra_internal(announce, ["reschedule/cancel this task", 20])
+        self.add_extra_internal(announce, ["move to a saving/loading framework", 20])
+        self.add_extra_internal(announce, ["all tasks go into a single list and that list is published", 20])
+        self.add_extra_internal(announce, ["the evening slump, when Ryan is not here. Keep engaged on something, keep busy, stay motivated. further to this, stretching and exercising are still productive.", 20])
+        
+        
+        self.add_extra_internal(announce, ["turn on monitors for yoga", 20])
+        self.add_extra_internal(announce, ["ryan's bedtime light routine", 20])
+        self.add_extra_internal(announce, ["combine node-red flows", 20])
+        self.add_extra_internal(announce, ["make single controller.py for all inputs if you can receive the device as part of args[]", 20])
+        self.add_extra_internal(announce, ["list of friends to message", 20])
+        self.add_extra_internal(announce, ["fix the videos and extra tasks", 20])
+        
+        self.add_extra_internal(announce, ["fill and scan your job acceptance", 20])
+        self.add_extra_internal(announce, ["alexa, wrap up for the day (late finish)", 20])
+        self.add_extra_internal(announce, ["download extra yoga videos for novelty", 20])
+        self.add_extra_internal(announce, ["add novelty wherever possible", 20])
+        
+        self.add_extra_internal(announce, ["get through your emails.", 20])
+        self.add_extra_internal(announce, ["incorporate the breath holding practice.", 20])   
+        self.add_extra_internal(announce, ["make some bread.", 25])
+        
+        self.add_extra_internal(announce, ["fix the green drill under the bed.", 60])
+        self.add_extra_internal(announce, ["fix the pyrography pen under the bed.", 60])
+        self.add_extra_internal(announce, ["try to fix rebeccas blue nokia with the replacement screen.", 20])       
+        self.add_extra_internal(announce, ["reminders of daily quote / mindset before meals and throughout the day.", 20])       
+
+    def add_extra_internal(self, _action, _data):
+        
+        # _data = text, duration
+
+        # dayplan: [ID] = taskattribs
+        # taskattribs: action data hour minute duration
+
+        text = _data[0]
+        duration = _data[1]
+        # extraqueue: [text] = taskattribs
+        # taskattribs = action data duration
+        taskattribs = {"action": _action, "data": _data, "duration": duration}
+        self.extraqueue[text] = taskattribs
 
     def sanity_check(self, _next_section_start, _name_of_current_section):
         free_hours = _next_section_start[0] - self.task_start[0] # hours difference
@@ -368,12 +423,17 @@ class planner:
 
         phase = self.dayPhase.wake
         announce = self.action.announce
+        video = self.action.play_video
         
         self.add_daily_internal(announce, [("Welcome to today. You have " + str(delta.days) + " days left to live."), 1], phase)
         self.add_daily_internal(announce, ["you are insignificant. but your actions mean everything.", 1], phase)
-        self.add_daily_internal(announce, ["now is the most important part of the day. Win the morning and you win the day.", 1], phase)
-        self.add_daily_internal(announce, ["its time to get up. Yoga will start soon. lay out the mat and entire childs pose.", 1], phase)  
-        # self.play_video(self.action.play_video, "morning", 16)
+        self.add_daily_internal(announce, ["now is the most important part of the day. . Win the morning and you win the day.", 1], phase)
+        self.add_daily_internal(announce, ["its time to get up. Yoga will start soon. lay out the mat and enter childs pose.", 1], phase)  
+
+        # play video: action [name, duration] phase
+        self.add_daily_internal(video, ["morning", 16], phase)
+
+        # TODO list:
         
         # frequent reminders, such as vape and sit up straight
         # washing should be an extra task
@@ -398,6 +458,20 @@ class planner:
         # move to a saving/loading framework
         # all tasks go into a single list and that list is published
         # the evening slump, when Ryan is not here. Keep engaged on something, keep busy, stay motivated.
+        
+        
+        # turn on monitors for yoga
+        # ryan's bedtime light routine
+        # combine node-red flows
+        # make single controller.py for all inputs if you can receive the device as part of args[]
+        # list of friends to message
+        # fix the videos and extra tasks
+        
+        # fill and scan your job acceptance
+        # alexa, wrap up for the day (late finish)
+        # download extra yoga videos for novelty
+        # add novelty wherever possible
+
 
         self.add_daily_internal(announce, [(f"Here is todays quote to meditate on. {self.stoicQuotes()}"), 3], phase)
         self.add_daily_internal(announce, ["go boil the jug and prepare your breakfast.", 4], phase)
@@ -406,7 +480,6 @@ class planner:
         self.add_daily_internal(announce, ["its breakfasttime.", 25], phase)
         self.add_daily_internal(announce, ["clean your teeth and then the kitchen", 20], phase)
         self.add_daily_internal(announce, ["now clean your room.", 10], phase)
-
         self.add_daily_internal(announce, ["message your grandfather and your parents.", 40], phase)
         
         
@@ -416,7 +489,8 @@ class planner:
         # sanity check
         self.sanity_check(self.mid_morning_TOD, "morning")
         # extra tasks section
-        self.schedule_extra(self.mid_morning_TOD)
+        nextphase_TOD = self.mid_morning_TOD
+        self.schedule_extra(nextphase_TOD, phase)
         
         # ------------------------------------ mid morning -----------------------------------------
         self.task_start[0] = self.mid_morning_TOD[0]
@@ -433,7 +507,8 @@ class planner:
         # sanity check
         self.sanity_check(self.midday_TOD, "mid morning")
         # extra tasks section
-        # self.schedule_extra(self.midday_TOD)
+        nextphase_TOD = self.midday_TOD
+        self.schedule_extra(nextphase_TOD, phase)
 
         # ------------------------------------- midday ----------------------------------------
         self.task_start[0] = self.midday_TOD[0]
@@ -448,7 +523,8 @@ class planner:
         # sanity check
         self.sanity_check(self.afternoon_TOD, "midday")
         # extra tasks section
-        # self.schedule_extra(self.afternoon_TOD)
+        nextphase_TOD = self.afternoon_TOD
+        self.schedule_extra(nextphase_TOD, phase)
 
         # ------------------------------------- afternoon ----------------------------------------
         self.task_start[0] = self.afternoon_TOD[0]
@@ -461,7 +537,8 @@ class planner:
         # sanity check
         self.sanity_check(self.dinner_TOD, "afternoon")
         # extra tasks section
-        # self.schedule_extra(self.dinner_TOD)
+        nextphase_TOD = self.dinner_TOD
+        self.schedule_extra(nextphase_TOD, phase)
 
         # ------------------------------------- dinner ----------------------------------------
         self.task_start[0] = self.dinner_TOD[0]
@@ -488,7 +565,8 @@ class planner:
         self.add_daily_internal(announce, ["Write in the journal.", 10], phase)
         self.add_daily_internal(announce, ["prepare space for yoga. make sure volume is appropriate for your morning routine.", 15], phase)
 
-        # self.play_video("evening", 15)
+        # play video: action [name, duration] phase
+        self.add_daily_internal(video, ["evening", 15], phase)
 
         self.add_daily_internal(announce, ["you are done now. pack up and clean your room. Make sure you have space for yoga tomorrow morning.", 5], phase)
         self.add_daily_internal(announce, ["fill your drink bottle.", 3], phase)
@@ -528,6 +606,8 @@ class planner:
         # self.all_tasks.update({self.dayPhasesname: self.dayPhases_TOD})
 
         # print(self.all_tasks)
+        # for ID, attribs in self.dayPlan.items():
+        #     print(attribs["data"])
         
     def add_daily(self):
         add_name = prompt('reminder text: ')
@@ -555,7 +635,7 @@ class planner:
             self.task_start[1] -= 60
             self.task_start[0] += 1
 
-    def schedule_extra(self, _end_of_extra_time):
+    def schedule_extra(self, _end_of_extra_time, _dayPhase):
         #should be renamed schedule_extra and then there is a publish task for all tasks
 
         total_hours = _end_of_extra_time[0] - self.task_start[0]
@@ -567,36 +647,66 @@ class planner:
         #It must be a queue system, so tasks get chucked out of extralist[] and into attempted[]?
         #fuck it, that will work for now. 
 
-        for job_name, duration in self.extraqueue.items():
+        
+        for text, taskattribs in self.extraqueue.items():
+            # extraqueue: [text] = taskattribs
+            # taskattribs = action data duration
+            # taskattribs = {"action": _action, "data": _data, "duration": duration}
 
-            #do we have time for the job?
+            duration = taskattribs["duration"]
+            action = taskattribs["action"]
+            data = taskattribs["data"]
             if total_minutes > duration:
                 total_minutes -= duration
 
-                cmd = f'source /home/st/Projects/Planner/.venv/bin/activate ; python /home/st/Projects/Planner/announcements.py "{job_name} you have {duration} minutes"'
-                task = self.cron.new(command=cmd)
-                task.hour.on(self.task_start[0])
-                task.minute.on(self.task_start[1])
-                self.cron.write()
+                if action == self.action.announce:
+                    duration = data[1]
+                    if duration <= 0:
+                        duration = 1
 
-                # add the tasks to the main daily list
-                taskattribs = {self.hour_name: self.task_start[0], self.minute_name: self.task_start[1], self.duration_name: duration}
-                self.dayPlan[job_name] = taskattribs
+                    taskattribs = {"action": action, "data": data, "hour": self.task_start[0], "minute": self.task_start[1], "duration": duration, "phase": _dayPhase}
+                    ID = f"announce{self.task_start[0]}{self.task_start[1]}"
+                    self.dayPlan[ID] = taskattribs
 
-                # increase start time to account for job duration
-                self.task_start[1] += duration
-                while (self.task_start[1] > 59):
-                    self.task_start[0] += 1
-                    self.task_start[1] -= 60
+                    self.attempedExtraTasks[text] = duration
 
-                # add job to tracker
-                self.attempedExtraTasks[job_name] = duration
+                    self.task_start[1] += duration
+                    while (self.task_start[1] > 59):
+                        self.task_start[1] -= 60
+                        self.task_start[0] += 1
+                    
+                elif action == self.action.play_video:
+                    duration = data[1]
+                    if duration <= 0:
+                        duration = 1
+
+                    self.task_start[1] += duration
+                    while (self.task_start[1] > 59):
+                        self.task_start[1] -= 60
+                        self.task_start[0] += 1
+
+                elif action == self.action.light_toggle:
+                    duration = data[1]
+                    if duration <= 0:
+                        duration = 1
+
+                elif action == self.action.light_fade:
+                    duration = data[1]
+                    if duration <= 0:
+                        duration = 1
+
             else:
-                cmd = f'source /home/st/Projects/Planner/.venv/bin/activate ; python /home/st/Projects/Planner/announcements.py "you get to read until the next task"'
-                task = self.cron.new(command=cmd)
-                task.hour.on(self.task_start[0])
-                task.minute.on(self.task_start[1])
-                self.cron.write()
+
+                duration = total_minutes
+                data[0] = "you get to read until the next task"
+                data[1] = duration
+                
+                taskattribs = {"action": self.action.announce, "data": data, "hour": self.task_start[0], "minute": self.task_start[1], "duration": duration, "phase": _dayPhase}
+                # TODO this does not fit the format. ID should be the action
+                ID = f"extra{self.task_start[0]}{self.task_start[1]}"
+                self.dayPlan[ID] = taskattribs
+                break
+                
 
         # this to make sure we remove jobs from possibly being schedueled (make this better, duplicate the list or something before starting)
         for job_name, duration in self.attempedExtraTasks.items():
@@ -605,29 +715,59 @@ class planner:
             self.extraqueue.pop(job_name, None)
 
     def add_daily_internal(self, _action, _data, _dayPhase):
+        # this method only adds to the dayplan json with the time to start the task
+
+        # dayplan: [ID] = taskattribs
         # taskattribs: action data hour minute duration
-        
+
+        # TODO add phase to taskattribs
+        duration = 0
         if _action == self.action.announce:
             # announce: action [text, duration] phase
-            text = _data[0]
+            # text = _data[0]
             duration = _data[1]
+            if duration <= 0:
+                duration = 1
             
-            taskattribs = {"action": "announce", "data": _data, "hour": self.task_start[0], "minute": self.task_start[1], "duration": duration}
-            self.dayPlan[text] = taskattribs
-            self.defaultTasks[text] = taskattribs
+            taskattribs = {"action": _action, "data": _data, "hour": self.task_start[0], "minute": self.task_start[1], "duration": duration, "phase": _dayPhase}
+            ID = f"announce{self.task_start[0]}{self.task_start[1]}"
+            self.dayPlan[ID] = taskattribs
+            # self.defaultTasks[text] = taskattribs
+
+            self.task_start[1] += duration
+            while (self.task_start[1] > 59):
+                self.task_start[1] -= 60
+                self.task_start[0] += 1
 
         elif _action == self.action.play_video:
             # play video: action [name, duration] phase
-            x = True
-        elif _action == self.action.light_toggle:
-            x = True
-        elif _action == self.action.light_fade:
-            x = True       
+            # _add_name, _duration
+            # name = _data[0]
+            duration = _data[1]
+            if duration <= 0:
+                duration = 1
 
-        self.task_start[1] += duration
-        while (self.task_start[1] > 59):
-            self.task_start[1] -= 60
-            self.task_start[0] += 1
+            taskattribs = {"action": _action, "data": _data, "hour": self.task_start[0], "minute": self.task_start[1], "duration": duration, "phase": _dayPhase}
+            ID = f"play_video{self.task_start[0]}{self.task_start[1]}"
+            self.dayPlan[ID] = taskattribs
+
+            self.task_start[1] += duration
+            while (self.task_start[1] > 59):
+                self.task_start[1] -= 60
+                self.task_start[0] += 1
+
+        elif _action == self.action.light_toggle:
+            # light_toggle: ???
+            x = True
+            # lights act independently of task_start and other tasks
+        elif _action == self.action.light_fade:
+            # light_fade: ???
+
+            # add to the dayplan list
+            taskattribs = {"action": _action, "data": _data, "hour": self.task_start[0], "minute": self.task_start[1], "duration": duration, "phase": _dayPhase}
+            # lights act independently of task_start and other tasks
+
+
 
     def add_weekend_task(self):
         return
@@ -640,32 +780,48 @@ class planner:
         self.client.publish ("python", "Welcome to today. You have " + str(delta.days) + " days left to live.")
 
     def publish(self):
-        # CLEARS ALL TASKS, NEEDS TO BE RUN AFTER EACH SEGMENT
-        # SHOULD BE FINE
-        # IT'S NOT FINE, COMMENTED OUT THE REMOVE ALL
-        self.client.publish ("python", "publishing tasks")
-        # cron.remove_all()
-        # cron.write()
+        
+        # self.client.publish ("python", "publishing tasks")
+
+        # publish method depends on action type            
+
+
+        # print("publishing")
+        for ID, attribs in self.dayPlan.items():
+            # taskattribs: action data hour minute duration
             
-        #daily tasks
-        for job, attribs in self.dayPlan.items():
-            add_name = job
-            add_hours = attribs[self.hour_name]
-            add_minutes = attribs[self.minute_name]
+            time_hour = attribs[self.hour_name]
+            time_minute = attribs[self.minute_name]
+            data = attribs["data"]
+            action = attribs["action"]
             duration = attribs[self.duration_name]
 
-            if duration <= 0:
-                duration = 1
-
             cmd = ""
-            if duration > 1:
-                cmd = f'source /home/st/Projects/Planner/.venv/bin/activate ; python /home/st/Projects/Planner/announcements.py "{add_name} you have {duration} minutes"'
-            elif duration == 1:
-                cmd = f'source /home/st/Projects/Planner/.venv/bin/activate ; python /home/st/Projects/Planner/announcements.py "{add_name}"'          
             
-            task = self.cron.new(command=cmd)
-            task.hour.on(add_hours)
-            task.minute.on(add_minutes)
+            # print(f"ID {ID} {action} {str(self.action.announce)} {self.action.announce.value}")            
+
+            if action == self.action.announce:
+                # announce: action [text, duration] phase
+                announcement = data[0]
+                if duration > 1:
+                    cmd = f'source /home/st/Projects/Planner/.venv/bin/activate ; python /home/st/Projects/Planner/announcements.py "{announcement} you have {duration} minutes"'
+                elif duration == 1:
+                    cmd = f'source /home/st/Projects/Planner/.venv/bin/activate ; python /home/st/Projects/Planner/announcements.py "{announcement}"'    
+                    
+
+            elif action == self.action.play_video:
+                # play video: action [name, duration] phase
+                name = data[0]
+                cmd = (f'bash /home/st/scripts/play.sh /home/st/Videos/{name}.mp4')
+
+            elif action == self.action.light_toggle:
+                x = True
+            elif action == self.action.light_fade:
+                x = True
+
+            task = self.cron.new(command=cmd,comment=ID)
+            task.hour.on(time_hour)
+            task.minute.on(time_minute)
             self.cron.write()
 
         # dailylist.clear()
@@ -676,13 +832,13 @@ class planner:
 
     def list_jobs(self):
         print(f"jobs in {self.dailycategoryname}")
-        for job, attribs in self.dayPlan.items():
-            print("task: ", job)
+        for ID, attribs in self.dayPlan.items():
+            print("task: ", ID)
             for key in attribs:
                 print(key + ":", attribs[key])
         print(f"jobs in {self.extracategoryname}")
-        for job, attribs in self.extralist.items():
-            print("task: ", job)
+        for ID, attribs in self.extralist.items():
+            print("task: ", ID)
             for key in attribs:
                 print(key + ":", attribs[key])
 
@@ -691,15 +847,46 @@ class planner:
         hour = now.hour
         minute = now.minute
 
-        currentPhase = ""
+        tasks = []
+        tasks_this_hour = []
+        tasks_previous_hours = []
 
-        for phaseName, time in self.dayPhases_TOD.items():    
-            if (time[0] > hour):
-                break
-            currentPhase = phaseName
+        for ID, attribs in self.dayPlan.items():
+            # taskattribs = {"action": _action, "data": _data, "hour": self.task_start[0], "minute": self.task_start[1], "duration": duration, "phase": _dayPhase}
+            task_hour = attribs["hour"]
+            task_minute = attribs["minute"]
+            if(task_hour == hour):
+                tasks_this_hour.append((ID, task_hour, task_minute))
+            if(task_hour < hour):
+                tasks_previous_hours.append((ID, task_hour, task_minute))
+
+        for attribs in tasks_this_hour:
+            if(attribs[2] < minute):
+                tasks.append(attribs)
+        
+        if (len(tasks) == 1):
+            ID = tasks[0][0]
+            # print (f"id is {tasks[0][0]}")
+            taskinfo = self.dayPlan[ID]
+            data = taskinfo["data"]
+            print (f"current task is {data[0]} for {data[1]} minutes")
+
+        if (len)
+
+        # print (tasks)
+        # tasks = sorted(tasks, key=lambda hour: hour[1])
+
+        # current task is 7 15
+        # time is 8 05
+        # task in list is at 8 40
+        # task in list is at 8 50
+
+
+
 
         
-        print (currentPhase)
+        
+        
 
     def nextFromNow(self):
         # list all cron jobs
@@ -712,15 +899,15 @@ class planner:
         return
     def delete_daily(self):
         print(f"jobs in {self.dailycategoryname}")
-        for job, attribs in self.dayPlan.items():
-            print("task: ", job)
+        for ID, attribs in self.dayPlan.items():
+            print("task: ", ID)
         del_task = prompt('task to delete: ')
         del self.dayPlan[del_task]
 
     def delete_extra(self):
         print(f"jobs in {self.extracategoryname}")
-        for job, attribs in self.extralist.items():
-            print("task: ", job)
+        for ID, attribs in self.extralist.items():
+            print("task: ", ID)
         del_task = prompt('task to delete: ')
         del self.dayPlan[del_task]
 
@@ -812,7 +999,9 @@ class planner:
             "Take the time to appreciate the progress you have made. Each time you do something, compare yourself with your past self. You are doing great.",
             "You have nothing to apologise for. You are in control. Your word is law. Trust yourself. Act for yourself.",
             "What is this days meaning and purpose? What is the lesson you learn today?",
-            "If it is endurable, then endure it. Stop complaining."
+            "If it is endurable, then endure it. Stop complaining.",
+            "every day, every action, you are building up credit. What kind of return will you receive? health or ruin?",
+            "every time you make a good choice, praise yourself for it. Feel good when you do good."
         ]
         
         daily_quote = quotes[(random.randint(0, len(quotes) - 1))]
@@ -839,6 +1028,14 @@ else:
     elif(sys.argv[1] == "late"):
         Planner.clear_cron()
         Planner.set_initial_conditions(1)
+        Planner.default_daily_tasks()
+    elif(sys.argv[1] == "startNow"):
+        Planner.clear_cron()
+        Planner.set_initial_conditions(2)
+        Planner.default_daily_tasks()
+    elif(sys.argv[1] == "endNow"):
+        Planner.clear_cron()
+        Planner.set_initial_conditions(3)
         Planner.default_daily_tasks()
     elif(sys.argv[1] == "nextTask"):
         x = True

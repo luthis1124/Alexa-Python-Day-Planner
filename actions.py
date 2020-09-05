@@ -20,5 +20,7 @@ def any_action():
         subprocess.Popen(["/home/st/Projects/Planner/.venv/bin/python", "/home/st/Projects/Planner/planner.py", "currentTask"])
     elif(trigger == 8): # mark task done
         subprocess.Popen(["/home/st/Projects/Planner/.venv/bin/python", "/home/st/Projects/Planner/planner.py", "markDone"])
+    elif(trigger == 9): # mark task done
+        subprocess.Popen(["/home/st/Projects/Planner/.venv/bin/python", "/home/st/Projects/Planner/planner.py", "nextTask"])
 
 any_action()

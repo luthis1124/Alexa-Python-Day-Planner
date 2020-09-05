@@ -1,406 +1,5 @@
 {
-   "extra": {
-      "add spanish daily practice": {
-         "action": "announce",
-         "data": [
-            "add spanish daily practice",
-            20
-         ],
-         "duration": 20,
-         "done": "false",
-         "day": 5
-      },
-      "do the ali express order.": {
-         "action": "announce",
-         "data": [
-            "do the ali express order.",
-            20
-         ],
-         "duration": 20,
-         "done": "false",
-         "day": 5
-      },
-      "frequent reminders, such as vape and sit up straight": {
-         "action": "announce",
-         "data": [
-            "frequent reminders, such as vape and sit up straight",
-            20
-         ],
-         "duration": 20,
-         "done": "false",
-         "day": 5
-      },
-      "washing should be an extra task": {
-         "action": "announce",
-         "data": [
-            "you get to read until the next task",
-            1
-         ],
-         "duration": 20,
-         "done": "false",
-         "day": 5
-      },
-      "loop tasks, ie start thing, end thing, ie washing, baking": {
-         "action": "announce",
-         "data": [
-            "loop tasks, ie start thing, end thing, ie washing, baking",
-            20
-         ],
-         "duration": 20,
-         "done": "false",
-         "day": 5
-      },
-      "recurring tasks on longer frequency ie vacuum room, shave, washing": {
-         "action": "announce",
-         "data": [
-            "recurring tasks on longer frequency ie vacuum room, shave, washing",
-            20
-         ],
-         "duration": 20,
-         "done": "false",
-         "day": 5
-      },
-      "add task for reading journal": {
-         "action": "announce",
-         "data": [
-            "add task for reading journal",
-            20
-         ],
-         "duration": 20,
-         "done": "false",
-         "day": 5
-      },
-      "check if tasks get completed": {
-         "action": "announce",
-         "data": [
-            "you get to read until the next task",
-            10
-         ],
-         "duration": 20,
-         "done": "false",
-         "day": 5
-      },
-      "congratulations message for each task": {
-         "action": "announce",
-         "data": [
-            "congratulations message for each task",
-            20
-         ],
-         "duration": 20,
-         "done": "false",
-         "day": 5
-      },
-      "enable better easier flexibility for changing day start times etc": {
-         "action": "announce",
-         "data": [
-            "enable better easier flexibility for changing day start times etc",
-            20
-         ],
-         "duration": 20,
-         "done": "false",
-         "day": 5
-      },
-      "late night option": {
-         "action": "announce",
-         "data": [
-            "late night option",
-            20
-         ],
-         "duration": 20,
-         "done": "false",
-         "day": 5
-      },
-      "600 hours in one year for spanish": {
-         "action": "announce",
-         "data": [
-            "600 hours in one year for spanish",
-            20
-         ],
-         "duration": 20,
-         "done": "false",
-         "day": 5
-      },
-      "add fruit to diet": {
-         "action": "announce",
-         "data": [
-            "add fruit to diet",
-            20
-         ],
-         "duration": 20,
-         "done": "false",
-         "day": 5
-      },
-      "add novelty to the tasks": {
-         "action": "announce",
-         "data": [
-            "add novelty to the tasks",
-            20
-         ],
-         "duration": 20,
-         "done": "false",
-         "day": 5
-      },
-      "todays playlist ( based on weather? )": {
-         "action": "announce",
-         "data": [
-            "you get to read until the next task",
-            20
-         ],
-         "duration": 20,
-         "done": "false",
-         "day": 5
-      },
-      "extra tasks currently fill up with read until next task. needs a rewrite": {
-         "action": "announce",
-         "data": [
-            "extra tasks currently fill up with read until next task. needs a rewrite",
-            20
-         ],
-         "duration": 20,
-         "done": "false",
-         "day": 5
-      },
-      "alexa, pause my planner": {
-         "action": "announce",
-         "data": [
-            "alexa, pause my planner",
-            20
-         ],
-         "duration": 20,
-         "done": "false",
-         "day": 5
-      },
-      "lets do some yoga/workout": {
-         "action": "announce",
-         "data": [
-            "lets do some yoga/workout",
-            20
-         ],
-         "duration": 20,
-         "done": "false",
-         "day": 5
-      },
-      "what's my current task / next task": {
-         "action": "announce",
-         "data": [
-            "what's my current task / next task",
-            20
-         ],
-         "duration": 20,
-         "done": "false",
-         "day": 5
-      },
-      "reschedule/cancel this task": {
-         "action": "announce",
-         "data": [
-            "you get to read until the next task",
-            20
-         ],
-         "duration": 20,
-         "done": "false",
-         "day": ""
-      },
-      "move to a saving/loading framework": {
-         "action": "announce",
-         "data": [
-            "move to a saving/loading framework",
-            20
-         ],
-         "duration": 20,
-         "done": "false",
-         "day": ""
-      },
-      "all tasks go into a single list and that list is published": {
-         "action": "announce",
-         "data": [
-            "all tasks go into a single list and that list is published",
-            20
-         ],
-         "duration": 20,
-         "done": "false",
-         "day": ""
-      },
-      "the evening slump, when Ryan is not here. Keep engaged on something, keep busy, stay motivated. further to this, stretching and exercising are still productive.": {
-         "action": "announce",
-         "data": [
-            "the evening slump, when Ryan is not here. Keep engaged on something, keep busy, stay motivated. further to this, stretching and exercising are still productive.",
-            20
-         ],
-         "duration": 20,
-         "done": "false",
-         "day": ""
-      },
-      "turn on monitors for yoga": {
-         "action": "announce",
-         "data": [
-            "turn on monitors for yoga",
-            20
-         ],
-         "duration": 20,
-         "done": "false",
-         "day": ""
-      },
-      "ryan's bedtime light routine": {
-         "action": "announce",
-         "data": [
-            "ryan's bedtime light routine",
-            20
-         ],
-         "duration": 20,
-         "done": "false",
-         "day": ""
-      },
-      "combine node-red flows": {
-         "action": "announce",
-         "data": [
-            "combine node-red flows",
-            20
-         ],
-         "duration": 20,
-         "done": "false",
-         "day": ""
-      },
-      "make single controller.py for all inputs if you can receive the device as part of args[]": {
-         "action": "announce",
-         "data": [
-            "make single controller.py for all inputs if you can receive the device as part of args[]",
-            20
-         ],
-         "duration": 20,
-         "done": "false",
-         "day": ""
-      },
-      "list of friends to message": {
-         "action": "announce",
-         "data": [
-            "list of friends to message",
-            20
-         ],
-         "duration": 20,
-         "done": "false",
-         "day": ""
-      },
-      "fix the videos and extra tasks": {
-         "action": "announce",
-         "data": [
-            "fix the videos and extra tasks",
-            20
-         ],
-         "duration": 20,
-         "done": "false",
-         "day": ""
-      },
-      "fill and scan your job acceptance": {
-         "action": "announce",
-         "data": [
-            "fill and scan your job acceptance",
-            20
-         ],
-         "duration": 20,
-         "done": "false",
-         "day": ""
-      },
-      "alexa, wrap up for the day (late finish)": {
-         "action": "announce",
-         "data": [
-            "alexa, wrap up for the day (late finish)",
-            20
-         ],
-         "duration": 20,
-         "done": "false",
-         "day": ""
-      },
-      "download extra yoga videos for novelty": {
-         "action": "announce",
-         "data": [
-            "download extra yoga videos for novelty",
-            20
-         ],
-         "duration": 20,
-         "done": "false",
-         "day": ""
-      },
-      "add novelty wherever possible": {
-         "action": "announce",
-         "data": [
-            "add novelty wherever possible",
-            20
-         ],
-         "duration": 20,
-         "done": "false",
-         "day": ""
-      },
-      "get through your emails.": {
-         "action": "announce",
-         "data": [
-            "get through your emails.",
-            20
-         ],
-         "duration": 20,
-         "done": "false",
-         "day": ""
-      },
-      "incorporate the breath holding practice.": {
-         "action": "announce",
-         "data": [
-            "incorporate the breath holding practice.",
-            20
-         ],
-         "duration": 20,
-         "done": "false",
-         "day": ""
-      },
-      "make some bread.": {
-         "action": "announce",
-         "data": [
-            "make some bread.",
-            25
-         ],
-         "duration": 25,
-         "done": "false",
-         "day": ""
-      },
-      "fix the green drill under the bed.": {
-         "action": "announce",
-         "data": [
-            "fix the green drill under the bed.",
-            60
-         ],
-         "duration": 60,
-         "done": "false",
-         "day": ""
-      },
-      "fix the pyrography pen under the bed.": {
-         "action": "announce",
-         "data": [
-            "fix the pyrography pen under the bed.",
-            60
-         ],
-         "duration": 60,
-         "done": "false",
-         "day": ""
-      },
-      "try to fix rebeccas blue nokia with the replacement screen.": {
-         "action": "announce",
-         "data": [
-            "try to fix rebeccas blue nokia with the replacement screen.",
-            20
-         ],
-         "duration": 20,
-         "done": "false",
-         "day": ""
-      },
-      "reminders of daily quote / mindset before meals and throughout the day.": {
-         "action": "announce",
-         "data": [
-            "reminders of daily quote / mindset before meals and throughout the day.",
-            20
-         ],
-         "duration": 20,
-         "done": "false",
-         "day": ""
-      }
-   },
+   "extra": {},
    "daily": {
       "announce71": {
          "action": "announce",
@@ -471,7 +70,7 @@
       "announce722": {
          "action": "announce",
          "data": [
-            "Here is todays quote to meditate on. every day, every action, you are building up credit. What kind of return will you receive? health or ruin?",
+            "Here is todays quote to meditate on. Take the time to appreciate the progress you have made. Each time you do something, compare yourself with your past self. You are doing great.",
             3
          ],
          "hour": 7,
@@ -556,456 +155,245 @@
          "duration": 40,
          "phase": "wake"
       },
-      "announce929": {
-         "action": "announce",
-         "data": [
-            "add spanish daily practice",
-            20
-         ],
-         "hour": 9,
-         "minute": 29,
-         "duration": 20,
-         "phase": "wake"
-      },
-      "announce949": {
-         "action": "announce",
-         "data": [
-            "do the ali express order.",
-            20
-         ],
-         "hour": 9,
-         "minute": 49,
-         "duration": 20,
-         "phase": "wake"
-      },
-      "announce109": {
-         "action": "announce",
-         "data": [
-            "frequent reminders, such as vape and sit up straight",
-            20
-         ],
-         "hour": 10,
-         "minute": 9,
-         "duration": 20,
-         "phase": "wake"
-      },
-      "announce1029": {
-         "action": "announce",
-         "data": [
-            "you get to read until the next task",
-            1
-         ],
-         "hour": 10,
-         "minute": 29,
-         "duration": 1,
-         "phase": "wake"
-      },
-      "announce1030": {
+      "announce100": {
          "action": "announce",
          "data": [
             "it's time for a break. Todays snack is eggs on toast, followed by fruit.",
             20
          ],
          "hour": 10,
-         "minute": 30,
+         "minute": 0,
          "duration": 20,
          "phase": "mid_morning"
       },
-      "announce1050": {
+      "announce1020": {
          "action": "announce",
          "data": [
             "plan for dinner.",
             20
          ],
          "hour": 10,
-         "minute": 50,
+         "minute": 20,
          "duration": 20,
          "phase": "mid_morning"
       },
-      "announce1110": {
+      "announce1040": {
          "action": "announce",
          "data": [
             "reading time.",
             20
          ],
-         "hour": 11,
-         "minute": 10,
+         "hour": 10,
+         "minute": 40,
          "duration": 20,
          "phase": "mid_morning"
       },
-      "announce1130": {
-         "action": "announce",
-         "data": [
-            "you get to read until the next task",
-            1
-         ],
-         "hour": 11,
-         "minute": 30,
-         "duration": 1,
-         "phase": "mid_morning"
-      },
-      "announce1131": {
-         "action": "announce",
-         "data": [
-            "loop tasks, ie start thing, end thing, ie washing, baking",
-            20
-         ],
-         "hour": 11,
-         "minute": 31,
-         "duration": 20,
-         "phase": "mid_morning"
-      },
-      "announce1151": {
-         "action": "announce",
-         "data": [
-            "recurring tasks on longer frequency ie vacuum room, shave, washing",
-            20
-         ],
-         "hour": 11,
-         "minute": 51,
-         "duration": 20,
-         "phase": "mid_morning"
-      },
-      "announce1211": {
-         "action": "announce",
-         "data": [
-            "add task for reading journal",
-            20
-         ],
-         "hour": 12,
-         "minute": 11,
-         "duration": 20,
-         "phase": "mid_morning"
-      },
-      "announce1231": {
-         "action": "announce",
-         "data": [
-            "you get to read until the next task",
-            10
-         ],
-         "hour": 12,
-         "minute": 31,
-         "duration": 10,
-         "phase": "mid_morning"
-      },
-      "announce130": {
+      "announce120": {
          "action": "announce",
          "data": [
             "its lunch time. lunch will be a tuna sandwich. Don't forget a piece of fruit.",
             20
          ],
-         "hour": 13,
+         "hour": 12,
          "minute": 0,
          "duration": 20,
          "phase": "midday"
-      },
-      "announce1320": {
-         "action": "announce",
-         "data": [
-            "you get to read until the next task",
-            10
-         ],
-         "hour": 13,
-         "minute": 20,
-         "duration": 10,
-         "phase": "midday"
-      },
-      "announce1330": {
-         "action": "announce",
-         "data": [
-            "congratulations message for each task",
-            20
-         ],
-         "hour": 13,
-         "minute": 30,
-         "duration": 20,
-         "phase": "midday"
-      },
-      "announce1350": {
-         "action": "announce",
-         "data": [
-            "enable better easier flexibility for changing day start times etc",
-            20
-         ],
-         "hour": 13,
-         "minute": 50,
-         "duration": 20,
-         "phase": "midday"
-      },
-      "announce1410": {
-         "action": "announce",
-         "data": [
-            "late night option",
-            20
-         ],
-         "hour": 14,
-         "minute": 10,
-         "duration": 20,
-         "phase": "midday"
-      },
-      "announce1430": {
-         "action": "announce",
-         "data": [
-            "600 hours in one year for spanish",
-            20
-         ],
-         "hour": 14,
-         "minute": 30,
-         "duration": 20,
-         "phase": "midday"
-      },
-      "announce1450": {
-         "action": "announce",
-         "data": [
-            "add fruit to diet",
-            20
-         ],
-         "hour": 14,
-         "minute": 50,
-         "duration": 20,
-         "phase": "midday"
-      },
-      "announce1510": {
-         "action": "announce",
-         "data": [
-            "add novelty to the tasks",
-            20
-         ],
-         "hour": 15,
-         "minute": 10,
-         "duration": 20,
-         "phase": "midday"
-      },
-      "announce1530": {
-         "action": "announce",
-         "data": [
-            "you get to read until the next task",
-            20
-         ],
-         "hour": 15,
-         "minute": 30,
-         "duration": 20,
-         "phase": "midday"
-      },
-      "announce160": {
-         "action": "announce",
-         "data": [
-            "you get to read until the next task",
-            20
-         ],
-         "hour": 16,
-         "minute": 0,
-         "duration": 20,
-         "phase": "afternoon"
-      },
-      "announce1620": {
-         "action": "announce",
-         "data": [
-            "extra tasks currently fill up with read until next task. needs a rewrite",
-            20
-         ],
-         "hour": 16,
-         "minute": 20,
-         "duration": 20,
-         "phase": "afternoon"
-      },
-      "announce1640": {
-         "action": "announce",
-         "data": [
-            "alexa, pause my planner",
-            20
-         ],
-         "hour": 16,
-         "minute": 40,
-         "duration": 20,
-         "phase": "afternoon"
       },
       "announce170": {
-         "action": "announce",
-         "data": [
-            "lets do some yoga/workout",
-            20
-         ],
-         "hour": 17,
-         "minute": 0,
-         "duration": 20,
-         "phase": "afternoon"
-      },
-      "announce1720": {
-         "action": "announce",
-         "data": [
-            "what's my current task / next task",
-            20
-         ],
-         "hour": 17,
-         "minute": 20,
-         "duration": 20,
-         "phase": "afternoon"
-      },
-      "announce1740": {
-         "action": "announce",
-         "data": [
-            "you get to read until the next task",
-            20
-         ],
-         "hour": 17,
-         "minute": 40,
-         "duration": 20,
-         "phase": "afternoon"
-      },
-      "announce180": {
          "action": "announce",
          "data": [
             "it's time to prepare and eat dinner.",
             90
          ],
-         "hour": 18,
+         "hour": 17,
          "minute": 0,
          "duration": 90,
          "phase": "dinner"
       },
-      "announce1930": {
+      "announce1830": {
          "action": "announce",
          "data": [
             "with dinner done, check your plans for tomorrow. its saturday.",
             120
          ],
-         "hour": 19,
+         "hour": 18,
          "minute": 30,
          "duration": 120,
          "phase": "dinner"
       },
-      "announce220": {
+      "announce210": {
          "action": "announce",
          "data": [
             "well done, clean your teeth and you may read.",
             30
          ],
-         "hour": 22,
+         "hour": 21,
          "minute": 0,
          "duration": 30,
          "phase": "evening"
       },
-      "announce2230": {
+      "announce2130": {
          "action": "announce",
          "data": [
             "its time to wrap up for the day.",
             2
          ],
-         "hour": 22,
+         "hour": 21,
          "minute": 30,
          "duration": 2,
          "phase": "evening"
       },
-      "announce2232": {
+      "announce2132": {
          "action": "announce",
          "data": [
             "its time to reflect on your day.",
             5
          ],
-         "hour": 22,
+         "hour": 21,
          "minute": 32,
          "duration": 5,
          "phase": "evening"
       },
-      "announce2237": {
+      "announce2137": {
          "action": "announce",
          "data": [
             "now consider how insignificant you are.",
             5
          ],
-         "hour": 22,
+         "hour": 21,
          "minute": 37,
          "duration": 5,
          "phase": "evening"
       },
-      "announce2242": {
+      "announce2142": {
          "action": "announce",
          "data": [
             "Write in the journal.",
             10
          ],
-         "hour": 22,
+         "hour": 21,
          "minute": 42,
          "duration": 10,
          "phase": "evening"
       },
-      "announce2252": {
+      "announce2152": {
          "action": "announce",
          "data": [
             "prepare space for yoga. make sure volume is appropriate for your morning routine.",
             15
          ],
-         "hour": 22,
+         "hour": 21,
          "minute": 52,
          "duration": 15,
          "phase": "evening"
       },
-      "play_video237": {
+      "play_video227": {
          "action": "play_video",
          "data": [
             "evening",
             15
          ],
-         "hour": 23,
+         "hour": 22,
          "minute": 7,
          "duration": 15,
          "phase": "evening"
       },
-      "announce2322": {
+      "announce2222": {
          "action": "announce",
          "data": [
             "you are done now. pack up and clean your room. Make sure you have space for yoga tomorrow morning.",
             5
          ],
-         "hour": 23,
+         "hour": 22,
          "minute": 22,
          "duration": 5,
          "phase": "evening"
       },
-      "announce2327": {
+      "announce2227": {
          "action": "announce",
          "data": [
             "fill your drink bottle.",
             3
          ],
-         "hour": 23,
+         "hour": 22,
          "minute": 27,
          "duration": 3,
          "phase": "evening"
       },
-      "announce2330": {
+      "announce2230": {
          "action": "announce",
          "data": [
             "now get into bed you little shit.",
             4
          ],
-         "hour": 23,
+         "hour": 22,
          "minute": 30,
          "duration": 4,
          "phase": "evening"
       },
-      "announce2334": {
+      "announce2234": {
          "action": "announce",
          "data": [
             "well done today. You had a cold shower, were on time for each task, cleaned the kitchen, worked on the planner, kept in contact with your friends and family, did the washing, cleaned your room, planned for dinner, prepared for and had a good interview, ate well, exercised, and took control of your life.",
             3
          ],
-         "hour": 23,
+         "hour": 22,
          "minute": 34,
          "duration": 3,
          "phase": "evening"
       },
-      "announce2337": {
+      "announce2237": {
          "action": "announce",
          "data": [
             "goodnight, look forward to tomorrow.",
             1
          ],
-         "hour": 23,
+         "hour": 22,
          "minute": 37,
          "duration": 1,
          "phase": "evening"
       }
+   },
+   "times": {
+      "variation": [
+         0,
+         "startlate"
+      ],
+      "daystart": [
+         7,
+         1
+      ],
+      "lights_on": [
+         6,
+         40
+      ],
+      "wake": [
+         7,
+         1
+      ],
+      "mid_morning": [
+         10,
+         0
+      ],
+      "midday": [
+         12,
+         0
+      ],
+      "afternoon": [
+         15,
+         0
+      ],
+      "dinner": [
+         17,
+         0
+      ],
+      "evening": [
+         20,
+         0
+      ],
+      "lights_off": [
+         20,
+         20
+      ]
    }
 }

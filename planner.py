@@ -11,7 +11,6 @@ import os
 from prompt_toolkit.completion import Completer, Completion
 import click
 from fuzzyfinder import fuzzyfinder
-# import fuzzyfinder
 
 from operator import itemgetter
 
@@ -28,46 +27,10 @@ import os
 
 class planner:
 
-
-    # ?????? current task reports the previous if it's the same minute
-    # saving and loading from the json
-    # saving and loading extra tasks from the json
     # saving 'today's quote'
-    # next task
-    # done boolean for extra tasks
-    # tweaking late start (whole day doesn't need to be shifted)
     # implement going to bed now
     # implement going to sleep now
 
-    # first, plan the day
-    # set up half hour blocks
-    # set wake and bed time
-    # set and load default schedule to json
-    # set up daily stoic quote
-    # 'next thing' variable
-    # output to alexa
-    # console to add events to calendar, then saved to json extratasks.json
-
-
-
-
-    """
-    alltasks    dict
-                dailycategoryname   dailylistname
-                                    dailytask1      dailytask1name
-                                                    key value, key value
-                                    dailytask2      dailytask2name
-                                                    key value, key value
-                extracategoryname   extralistname
-                                    extratask1      extratask1name
-                                                    key value, key value
-                                    extratask2      extratask2name
-                                                    key value, key value
-    """
-
-    """
-    all{daily{task1{name, date, time}, task2{}}, extra}
-    """
     class menuCompleter(Completer):
         def __init__(self, menu_items):
             self.menu_items = menu_items
@@ -94,8 +57,7 @@ class planner:
         announce = "announce"
         play_video = "play_video"
         light_toggle = "light_toggle"
-        light_fade = "light_fade"
-        
+        light_fade = "light_fade"       
 
     def __init__(self):
         self.path = "/home/st/Projects/Planner/"
@@ -117,6 +79,7 @@ class planner:
         self.extralistname = "extralist"
         self.dailycategoryname = "daily"
         self.extracategoryname = "extra"
+        self.timecategoryname = "times"
         self.dayPhasesname = "dayPhases"
 
         self.hour_name = "hour"
@@ -157,7 +120,7 @@ class planner:
         self.client.connect("localhost", 1883, 60)
         self.cron = CronTab(user='st')
 
-        self.menu_items = ['add daily', 'add extra', 'del d', 'del e', 'publish', 'save', 'load', 'populate', 'list', 'cron', 'x', 'clear', 'default', 'clear cron', 'get current task']
+        self.menu_items = ['add daily', 'add extra', 'del d', 'del e', 'publish', 'save', 'load', 'populate', 'list', 'cron', 'x', 'clear', 'default', 'clear cron', 'current task', 'next task']
 
     def main(self):
         now = datetime.now()
@@ -176,7 +139,7 @@ class planner:
                 elif 'add daily' == user_input:
                     self.add_daily()
                 elif 'add extra' == user_input:
-                    self.add_extra()
+                    print("no menu option")
                 elif 'default' == user_input:
                     self.default_daily_tasks()
                 elif 'publish' == user_input:
@@ -187,8 +150,10 @@ class planner:
                     self.list_cron()
                 elif 'list' == user_input:
                     self.list_jobs()
-                elif 'get current task' == user_input:
+                elif 'current task' == user_input:
                     self.getCurrentTask()
+                elif 'next task' == user_input:
+                    self.getNextTask()
                 # elif 'populate' == user_input:
                 #     self.sample_populate()
                 elif 'save' == user_input:
@@ -198,7 +163,7 @@ class planner:
                 elif 'reset' == user_input:
                     self.reset()
                 elif 'test' == user_input:
-                    self.play_youtube("lol")
+                    self.set_initial_conditions("normal")
                 # elif 'say' == user_input:
                 #     self.say(user_input)
                 # elif 'clear' == user_input:
@@ -234,24 +199,24 @@ class planner:
         self.wake_TOD = daystart
         self.mid_morning_TOD = [10,0]
         # self.mid_morning_TOD = [self.wake_TOD[0] + 3, 30]
-        self.midday_TOD = [self.mid_morning_TOD[0] + 3, 0]
+        self.midday_TOD = [12, 0]
         self.afternoon_TOD = [self.midday_TOD[0] + 3, 0]
         self.dinner_TOD = [self.afternoon_TOD[0] + 2, 0]
-        self.evening_TOD = [self.dinner_TOD[0] + 4, 0]
+        self.evening_TOD = [self.dinner_TOD[0] + 3, 0]
         self.lights_off_TOD = [self.evening_TOD[0], 20]
 
         self.dayPhases_TOD.clear()
         self.dayPhases_TOD["variation"] = [0, _variation]
 
-        self.dayPhases_TOD[self.dayPhase.daystart] = daystart
-        self.dayPhases_TOD[self.dayPhase.lights_on] = self.lights_on_TOD
-        self.dayPhases_TOD[self.dayPhase.wake] = self.wake_TOD
-        self.dayPhases_TOD[self.dayPhase.mid_morning] = self.mid_morning_TOD
-        self.dayPhases_TOD[self.dayPhase.midday] = self.midday_TOD
-        self.dayPhases_TOD[self.dayPhase.afternoon] = self.afternoon_TOD
-        self.dayPhases_TOD[self.dayPhase.dinner] = self.dinner_TOD
-        self.dayPhases_TOD[self.dayPhase.evening] = self.evening_TOD
-        self.dayPhases_TOD[self.dayPhase.lights_off] = self.lights_off_TOD
+        self.dayPhases_TOD[self.dayPhase.daystart.value] = daystart
+        self.dayPhases_TOD[self.dayPhase.lights_on.value] = self.lights_on_TOD
+        self.dayPhases_TOD[self.dayPhase.wake.value] = self.wake_TOD
+        self.dayPhases_TOD[self.dayPhase.mid_morning.value] = self.mid_morning_TOD
+        self.dayPhases_TOD[self.dayPhase.midday.value] = self.midday_TOD
+        self.dayPhases_TOD[self.dayPhase.afternoon.value] = self.afternoon_TOD
+        self.dayPhases_TOD[self.dayPhase.dinner.value] = self.dinner_TOD
+        self.dayPhases_TOD[self.dayPhase.evening.value] = self.evening_TOD
+        self.dayPhases_TOD[self.dayPhase.lights_off.value] = self.lights_off_TOD
 
         # print(self.dayPhases_TOD)
 
@@ -306,8 +271,6 @@ class planner:
             "duration": 16
         }
     
-
- 
     def play_video(self, _add_name, _duration):
         cmd = (f'bash /home/st/scripts/play.sh /home/st/Videos/{_add_name}.mp4')
         task = self.cron.new(command=cmd)
@@ -423,6 +386,7 @@ class planner:
             dayString = "Sunday"
 
         return dayString
+
     def default_daily_tasks(self):
 
         # for ease of use, just run default
@@ -432,9 +396,10 @@ class planner:
         # or the method gets updated so we don't get duplicates.
         # self.declare_extra_tasks()
         self.load()
-        # for now, we are resetting the extratasks day field
+        # for now, we are resetting the extratasks fields
         for text, attribs in self.extraqueue.items():
             attribs["day"] = ""
+            attribs["done"] = "false"
         
         # clear the day plan loaded from the file because duh we are generating it here
         self.dayPlan.clear()
@@ -681,15 +646,11 @@ class planner:
 
             if (day != now.day and done == "false"):
 
-
                 if total_minutes > duration:
                     total_minutes -= duration
 
-
                     if action == self.action.announce.value:
                         duration = data[1]
-                        if duration <= 0:
-                            duration = 1
 
                         extra_taskattribs = {"action": action, "data": data, "hour": self.task_start[0], "minute": self.task_start[1], 
                             "duration": duration, "phase": _dayPhase}
@@ -700,7 +661,6 @@ class planner:
                         # now update the extra tasks queue to mark as scheduled
                         self.extraqueue[text]["day"] = now.day
                         
-
                         self.task_start[1] += duration
                         while (self.task_start[1] > 59):
                             self.task_start[1] -= 60
@@ -708,25 +668,13 @@ class planner:
                         
                     elif action == self.action.play_video.value:
                         duration = data[1]
-                        if duration <= 0:
-                            duration = 1
 
                         self.task_start[1] += duration
                         while (self.task_start[1] > 59):
                             self.task_start[1] -= 60
                             self.task_start[0] += 1
-
-                    elif action == self.action.light_toggle.value:
-                        duration = data[1]
-                        if duration <= 0:
-                            duration = 1
-
-                    elif action == self.action.light_fade.value:
-                        duration = data[1]
-                        if duration <= 0:
-                            duration = 1
                 
-                else:
+                else: # if total minutes remaining is less than the duration of the next task
 
                     duration = total_minutes
                     data[0] = "you get to read until the next task"
@@ -876,6 +824,8 @@ class planner:
         self.client.publish ("python", say)
 
     def getCurrentTaskInternal(self):
+        # TODO on the minute of starting, current task reports the previous task
+        # this happens in if (len(tasks) == 1):
 
         now = datetime.now()
         hour = now.hour
@@ -885,7 +835,7 @@ class planner:
         tasks_this_hour = []
         tasks_previous_hours = []
 
-        self.load()
+        
 
         textID = ""
 
@@ -906,7 +856,7 @@ class planner:
             # print(tasks_previous_hours)
 
             for attribs in tasks_this_hour:
-                if(attribs[2] < minute):
+                if(attribs[2] <= minute):
                     tasks.append(attribs)
             
             if (len(tasks) == 1):
@@ -918,6 +868,7 @@ class planner:
                 data = attribs["data"]
                 duration = attribs["duration"]
                 # print (f"current task is: {data[0]} for {duration} minutes")
+                # textID = "len tasks is 1" + data[0]
                 textID = data[0]
                 # say = f"your current task is {data[0]}"
                 # self.client.publish ("python", say)
@@ -938,8 +889,8 @@ class planner:
                 data = attribs["data"]
                 duration = attribs["duration"]
                 # print (f"current task is: {data[0]} for {duration} minutes")
+                # textID = "len tasks is more than 1" + data[0]
                 textID = data[0]
-
                 # say = f"your current task is {data[0]}"
                 # self.client.publish ("python", say)
 
@@ -964,8 +915,8 @@ class planner:
                 data = attribs["data"]
                 duration = attribs["duration"]
                 # print (f"current task is: {data[0]} for {duration} minutes")
+                # textID = "len tasks is 0" + data[0]
                 textID = data[0]
-
                 # say = f"your current task is {data[0]}"
                 # self.client.publish ("python", say)
                     
@@ -979,18 +930,121 @@ class planner:
         # task in list is at 8 50
         return textID
 
+    def getNextTask(self):
+        say = f"your next task is {self.getNextTaskInternal()}"
+        self.client.publish ("python", say)
+
     def getNextTaskInternal(self):
-        x = True
+         # TODO on the minute of starting, current task reports the previous task
+        # this happens in if (len(tasks) == 1):
 
-    def nextFromNow(self):
-        # list all cron jobs
-        for job in self.cron:
-            print(job)
-            job.find_time
+        now = datetime.now()
+        hour = now.hour
+        minute = now.minute
+
+        tasks = []
+        tasks_this_hour = []
+        tasks_previous_hours = []
+
+        
+
+        textID = ""
+
+        if self.dayPlan:
+
+            for ID, attribs in self.dayPlan.items():
+                # taskattribs = {"action": _action, "data": _data, "hour": self.task_start[0], "minute": self.task_start[1], "duration": duration, "phase": _dayPhase}
+                task_hour = attribs["hour"]
+                task_minute = attribs["minute"]
+                if(task_hour == hour):
+                    tasks_this_hour.append((ID, task_hour, task_minute))
+                if(task_hour > hour):
+                    tasks_previous_hours.append((ID, task_hour, task_minute))
+
+            # print("tasks to check, this hour:")
+            # print(tasks_this_hour)
+            # print("tasks previous hours:")
+            # print(tasks_previous_hours)
+
+            for attribs in tasks_this_hour:
+                if(attribs[2] >= minute):
+                    tasks.append(attribs)
             
-        # get the time
+            if (len(tasks) == 1):
+                # print("len tasks == 1")
 
-        return
+                ID = tasks[0][0]
+                # print (f"id is {tasks[0][0]}")
+                attribs = self.dayPlan[ID]
+                data = attribs["data"]
+                duration = attribs["duration"]
+                # print (f"current task is: {data[0]} for {duration} minutes")
+                # textID = "len tasks is 1" + data[0]
+                textID = data[0]
+                # say = f"your current task is {data[0]}"
+                # self.client.publish ("python", say)
+
+            if (len(tasks) > 1):
+                # (ID, task_hour, task_minute)
+
+                # print("len tasks > 1")
+                # maybe not using itemgetter?
+                # tasks.sort(key=itemgetter(2)) 
+
+                tasks = sorted(tasks, key=lambda hour: hour[1], reverse=True)
+                # print (tasks[-1])
+                            
+                ID = tasks[-1][0]
+                # print (f"id is {tasks[0][0]}")
+                attribs = self.dayPlan[ID]
+                data = attribs["data"]
+                duration = attribs["duration"]
+                # print (f"current task is: {data[0]} for {duration} minutes")
+                # textID = "len tasks is more than 1" + data[0]
+                textID = data[0]
+
+                # say = f"your current task is {data[0]}"
+                # self.client.publish ("python", say)
+
+
+            if (len(tasks) == 0):
+                # pick the task that has highest hours and minutes
+                # print("tasks == 0")
+                # print(tasks_previous_hours)
+                tasks_previous_hours = sorted(tasks_previous_hours, key=lambda hour: hour[1], reverse=True)
+
+                hour_to_match = tasks_previous_hours[-1][1]
+                tasks = []
+                for task in tasks_previous_hours:
+                    if(task[1] == hour_to_match):
+                        tasks.append(task)
+                
+                tasks_single_hour_sort_by_minute = sorted(tasks, key=lambda minute: minute[2], reverse=True)
+
+                ID = tasks_single_hour_sort_by_minute[-1][0]
+                # print (f"id is {tasks[0][0]}")
+                attribs = self.dayPlan[ID]
+                data = attribs["data"]
+                duration = attribs["duration"]
+                # print (f"current task is: {data[0]} for {duration} minutes")
+                # textID = "len tasks is 0" + data[0]
+                textID = data[0]
+
+                # say = f"your current task is {data[0]}"
+                # self.client.publish ("python", say)
+                    
+        else:
+            # print("day plan is empty")
+            # self.client.publish ("python", "day plan is empty")
+            textID = "day plan is empty"
+        # current task is 7 15
+        # time is 8 05
+        # task in list is at 8 40
+        # task in list is at 8 50
+        if textID == "":
+            textID = "task is empty"
+        return textID
+
     def delete_daily(self):
         print(f"jobs in {self.dailycategoryname}")
         for ID, attribs in self.dayPlan.items():
@@ -1009,6 +1063,7 @@ class planner:
         self.all_tasks.clear()
         self.all_tasks.update({self.extracategoryname: self.extraqueue})
         self.all_tasks.update({self.dailycategoryname: self.dayPlan})
+        self.all_tasks.update({self.timecategoryname: self.dayPhases_TOD})
         name = self.path + self.filename
         with open(name, 'w') as f:
             json.dump(self.all_tasks, f, indent = 3)
@@ -1035,6 +1090,7 @@ class planner:
             f.close()
         except Exception as e:
             err = "had error " + str(e)
+            print (err)
             self.client.publish ("python", "couldn't load the file")
             # time.sleep(3)
 
@@ -1050,6 +1106,8 @@ class planner:
         
         dailycheck = self.all_tasks.get(self.dailycategoryname)
         extracheck = self.all_tasks.get(self.extracategoryname)
+        timecheck = self.all_tasks.get(self.timecategoryname)
+
         if dailycheck:
             self.dayPlan.update(self.all_tasks[self.dailycategoryname])
             # self.client.publish ("python", "day plan is planned")
@@ -1059,6 +1117,16 @@ class planner:
             # time.sleep(2)
         if extracheck:
             self.extraqueue.update(self.all_tasks[self.extracategoryname])
+
+        if timecheck:
+            self.lights_on_TOD = self.all_tasks[self.timecategoryname][self.dayPhase.lights_on.value] 
+            self.wake_TOD = self.all_tasks[self.timecategoryname][self.dayPhase.wake.value]
+            self.mid_morning_TOD = self.all_tasks[self.timecategoryname][self.dayPhase.mid_morning.value]
+            self.midday_TOD = self.all_tasks[self.timecategoryname][self.dayPhase.midday.value]
+            self.afternoon_TOD = self.all_tasks[self.timecategoryname][self.dayPhase.afternoon.value]
+            self.dinner_TOD = self.all_tasks[self.timecategoryname][self.dayPhase.dinner.value]
+            self.evening_TOD = self.all_tasks[self.timecategoryname][self.dayPhase.evening.value]
+            self.lights_off_TOD = self.all_tasks[self.timecategoryname][self.dayPhase.lights_off.value]
 
         # self.list_jobs()
         
@@ -1170,15 +1238,21 @@ else:
     elif(sys.argv[1] == "endNow"):
         x = True
     elif(sys.argv[1] == "nextTask"):
+        Planner.load()
+        Planner.getNextTask()
+    elif(sys.argv[1] == "skipToNextTask"):
         x = True
     elif(sys.argv[1] == "currentTask"):
         
         # Planner.set_initial_conditions("normal")
         # Planner.default_daily_tasks()
+        Planner.load()
         Planner.getCurrentTask()
     elif(sys.argv[1] == "markDone"):
         # Planner.set_initial_conditions("normal")
         # Planner.default_daily_tasks()
+        Planner.load()
         Planner.markTaskDone()
+        Planner.save()
 
         #add this in
